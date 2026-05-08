@@ -41,7 +41,7 @@ export class Manga implements OnInit {
   toggleDesc() {
     this.isDescExtend.update(value => !value)
   }
-
+  
   openChapters() {
     this.isChaptersOpen.set(true)
   }
