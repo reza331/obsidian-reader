@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "public": true,
+  "name": "obsidian-reader",
+  "rewrites": [
+    { "source": "/(.*)" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/obsidian-reader/**"
+    }
+  }
+}
