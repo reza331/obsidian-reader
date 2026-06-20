@@ -42,11 +42,11 @@ export class MangaStore {
   getCoverUrl() {
 
     const coverID = this.manga()?.relationships.find(rel => rel.type === 'cover_art')?.id;
-    const proxyAddres = `https://img-proxy-five.vercel.app/image-proxy?quality=40&url=`
+    const proxyAddress = `https://reza-proxy-qmxh.onrender.com/image-proxy?quality=40&url=`
     if (coverID) {
       this.mangaServices.getCover(coverID).subscribe({
         next: (data) => {
-          this.fileUrl.set(`${proxyAddres}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}` || '')
+          this.fileUrl.set(`${proxyAddress}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}` || '')
         }
       })
     }
