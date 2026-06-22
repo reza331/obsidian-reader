@@ -42,7 +42,7 @@ export class MangaStore {
   getCoverUrl() {
 
     const coverID = this.manga()?.relationships.find(rel => rel.type === 'cover_art')?.id;
-    const proxyAddress = `https://proxy-ge6e.onrender.com/image-proxy?quality=40&url=`
+    const proxyAddress = `https://proxy-express-ww2e.onrender.com/image-proxy?quality=40&url=`
     if (coverID) {
       this.mangaServices.getCover(coverID).subscribe({
         next: (data) => {
