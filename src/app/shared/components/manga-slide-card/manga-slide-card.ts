@@ -38,7 +38,7 @@ export class MangaSlideCard implements OnInit {
 
   ngOnInit() {
     const coverID = this.manga()?.relationships.find((rel) => rel.type === 'cover_art')?.id || ''
-    const proxyAddres = `https://reza-proxy-qmxh.onrender.com/image-proxy?quality=10&url=`
+    const proxyAddres = `https://proxy-ge6e.onrender.com/image-proxy?quality=10&url=`
     this.mangaServices.getCover(coverID).subscribe({
       next: (data) => {
         this.fileUrl.set(`${proxyAddres}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}` || '')

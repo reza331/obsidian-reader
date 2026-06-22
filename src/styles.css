@@ -43,7 +43,7 @@ swiper-container::part(button-prev) {
 }
 
 swiper-container {
-  --swiper-preloader-color: var(--text-alt-color);
+  --swiper-preloader-color: rgba(0, 0, 0, 0);
 }
 
 

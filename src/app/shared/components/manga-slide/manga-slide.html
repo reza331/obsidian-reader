@@ -12,28 +12,30 @@
     </div>
     <!-- loading -->
     @if (isLoading()) {
-        <div class="flex justify-center py-5">
-            <div class="flex items-center gap-2 justify-center size-fit border-2 p-5 rounded-2xl glass backdrop-blur-xs">
-                <div class="loader"></div>
-                <span>Please wait while we load the content...</span>
-            </div>
+    <div class="flex justify-center py-5">
+        <div class="flex items-center gap-2 justify-center size-fit border-2 p-5 rounded-2xl glass backdrop-blur-xs">
+            <div class="loader"></div>
+            <span>Please wait while we load the content...</span>
         </div>
+    </div>
     }
-    @if (isError()) {
-        <div class="py-10 flex justify-center">
-            <p class="text-center text-rose-400 font-bold glass backdrop-blur-xs rounded-2xl size-fit border-2 p-5">An error occurred while loading the content. <button (click)="getMangas()" class="text-(--text-color) font-semibold">Click to retry</button></p>
-        </div>
+    @if (isError() && !isLoading()) {
+    <div class="py-10 flex justify-center">
+        <p class="text-center text-rose-400 font-bold glass backdrop-blur-xs rounded-2xl size-fit border-2 p-5">An error
+            occurred while loading the content. <button (click)="getMangas()"
+                class="text-(--text-color) font-semibold">Click to retry</button></p>
+    </div>
     }
     <!-- slider -->
     @if(mangas().length > 0) {
-         <swiper-container class="my-3" slides-per-view="auto" space-between="12" free-mode="true" navigation="true">
-             @for (manga of mangas(); track manga.id) {
-             <swiper-slide lazy="true" class="w-35 lg:w-75">
-                 <app-manga-slide-card [manga]="manga" sizeClass="h-50" />
-             </swiper-slide>
-             }
-         </swiper-container>
-     }
+    <swiper-container class="my-3" slides-per-view="auto" space-between="12" free-mode="true" navigation="true">
+        @for (manga of mangas(); track manga.id) {
+        <swiper-slide lazy="true" class="w-35 lg:w-75">
+            <app-manga-slide-card [manga]="manga" sizeClass="h-50" />
+        </swiper-slide>
+        }
+    </swiper-container>
+    }
     <!-- bottom part -->
     <div class="glass w-full h-3 border-2 rounded-b-2xl backdrop-blur-xs">
     </div>
