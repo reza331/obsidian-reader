@@ -13,7 +13,7 @@ export class MangaServices {
 
   private http = inject(HttpClient)
 
-  url = 'https://proxy-lguy.onrender.com/mangadex'
+  url = 'https://proxy331.netlify.app/mangadex'
 
   getMangas(offset: number = 0, limit: number = 20 , otherQueries: string = '') {
     return this.http.get<MangasResponse>(`${this.url}/manga?offset=${offset}&limit=${limit}&${otherQueries}`)

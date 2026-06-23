@@ -31,17 +31,18 @@ export class MangaSlideCard implements OnInit {
 
   }
 
-  get tags () {
+  get tags() {
     const tags = this.manga()?.attributes.tags || []
     return tags.slice(0, 2)
   }
 
   ngOnInit() {
     const coverID = this.manga()?.relationships.find((rel) => rel.type === 'cover_art')?.id || ''
-    const proxyAddres = `https://proxy-lguy.onrender.com/image-proxy?quality=10&url=`
+    const proxyAddres = `https://proxy331.netlify.app/image-proxy?&url=`
     this.mangaServices.getCover(coverID).subscribe({
       next: (data) => {
-        this.fileUrl.set(`${proxyAddres}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}` || '')
+        const imgUrl = `https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}`
+        this.fileUrl.set(`${proxyAddres}${encodeURIComponent(imgUrl)}` || '')
       }
     })
   }
