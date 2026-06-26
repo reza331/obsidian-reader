@@ -15,15 +15,23 @@ export class MangaStore {
   authorID = signal<string>('');
   chapters = signal<ChapterItem[]>([]);
   rating = signal<number>(0)
+  loading = signal<boolean>(false)
+  error = signal<boolean>(false)
+
 
   mangaServices = inject(MangaServices);
 
   loadManga(id: string) {
 
+    this.error.set(false)
+    this.loading.set(true)
+    
     this.reset()
 
     this.mangaServices.getManga(id)
       .pipe(catchError((err) => {
+        this.loading.set(false)
+        this.error.set(true)
         console.error('Error fetching manga:', err);
         return [];
       })).subscribe(
@@ -34,13 +42,15 @@ export class MangaStore {
             this.getAuthor()
             this.getRating(id)
             this.getChapters(id)
+          },
+          complete: () => {
+            this.loading.set(false)
           }
         })
 
   }
 
   getCoverUrl() {
-
     const coverID = this.manga()?.relationships.find(rel => rel.type === 'cover_art')?.id;
     const proxyAddress = `https://proxy331.netlify.app/image-proxy?url=`
     if (coverID) {
@@ -50,7 +60,6 @@ export class MangaStore {
         }
       })
     }
-
   }
 
   getAuthor() {
@@ -65,8 +74,8 @@ export class MangaStore {
     }
   }
 
-  getChapters(mangaID: string , lang = 'en') {
-    this.mangaServices.getChapters(mangaID , 0 , 500 , lang ).subscribe({
+  getChapters(mangaID: string, lang = 'en') {
+    this.mangaServices.getChapters(mangaID, 0, 500, lang).subscribe({
       next: (data) => {
         this.chapters.set(data.data)
       }

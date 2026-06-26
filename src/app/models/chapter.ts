@@ -22,10 +22,16 @@ export interface ChapterItem {
 }
 
 export interface ChaptersResponse {
-      result: string;
-      response: string;
-      data: ChapterItem[];
-      limit: number;
-      offset: number;
-      total: number;
+  result: string;
+  response: string;
+  data: ChapterItem[];
+  limit: number;
+  offset: number;
+  total: number;
+}
+
+export interface ChapterResponse {
+  result: string;
+  response: string;
+  data: ChapterItem;
 }

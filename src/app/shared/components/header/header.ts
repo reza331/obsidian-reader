@@ -17,19 +17,21 @@ interface NavLinks {
 export class Header implements OnInit {
 
   isOpen = signal(false)
-
-
+  isChapter = signal(false)
   router = inject(Router)
 
   ngOnInit() {
-
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
+        if (this.router.url.startsWith('/chapter')) {
+          this.isChapter.set(true)
+        } else {
+          this.isChapter.set(false)
+        }
         this.isOpen.set(false)
       })
   }
-
 
   openMenu() {
     this.isOpen.set(true)

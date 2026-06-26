@@ -12,12 +12,7 @@
     </div>
     <!-- loading -->
     @if (isLoading()) {
-    <div class="flex justify-center py-5">
-        <div class="flex items-center gap-2 justify-center size-fit border-2 p-5 rounded-2xl glass backdrop-blur-xs">
-            <div class="loader"></div>
-            <span>Please wait while we load the content...</span>
-        </div>
-    </div>
+    <app-loading-box [text]="'Loading the content...'" />
     }
     @if (isError() && !isLoading()) {
     <div class="py-10 flex justify-center">

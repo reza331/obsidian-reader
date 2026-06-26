@@ -1,9 +1,20 @@
-<main class="container w-dvw min-h-[calc(100dvh-80px)] p-5">
+<main class="container w-dvw min-h-[calc(100dvh-80px)] p-5 mt-20">
+    @if (mangaStore.error()) {
+    <div class="py-10 flex justify-center">
+        <p class="text-center text-rose-400 font-bold glass backdrop-blur-xs rounded-2xl size-fit border-2 p-5">An error
+            occurred while loading the content. <button (click)="runService()"
+                class="text-(--text-color) font-semibold">Click to retry</button></p>
+    </div>
+    }
+    @if (mangaStore.loading()) {
+    <app-loading-box [text]="'Loading manga...'" />
+    }
+    @if (!mangaStore.error() && !mangaStore.loading()) {
     <!-- detail box -->
     <div
         class="lg:w-[85%] mx-auto glass backdrop-blur-xs border-2 rounded-3xl flex flex-col lg:flex-row overflow-y-auto">
         <!-- cover desktop  -->
-        <div class="hidden lg:block min-h-[calc(100dvh-80px) w-75">
+        <div class="hidden lg:block min-h-[calc(100dvh-80px) w-75 overflow-hidden">
             @if (mangaStore.fileUrl()) {
             <img [src]="mangaStore.fileUrl()" alt="cover" class="size-full object-cover">
             }@else {
@@ -11,7 +22,26 @@
             }
         </div>
         <!-- cover mobile -->
-        <div class="relative lg:hidden h-55 sm:h-80 w-full">
+        <div class="relative lg:hidden h-55 sm:h-80 w-full overflow-hidden">
+            <!-- rating mobile -->
+            <div
+                class="absolute bottom-1 text-[9px] flex gap-2 border-2 border-[#ffffff22] bg-[#000000d8] w-fit px-3 py-2 rounded-2xl">
+                <div class=" flex items-center gap-0.5 font-bold">Year :
+                    <span class="font-semibold text-cyan-400">
+                        {{mangaStore.manga()?.attributes?.year ?? 'Unknown'}}
+                    </span>
+                </div>
+                <div class="flex items-center gap-0.5 font-bold">Rating :
+                    <span appRatingColor [rating]="mangaStore.rating()" class="font-semibold">
+                        {{mangaStore.rating().toFixed(1)}}
+                    </span>
+                </div>
+                <div class="flex items-center gap-0.5 font-bold">Status :
+                    <span class="font-semibold">
+                        {{mangaStore.manga()?.attributes?.status }}
+                    </span>
+                </div>
+            </div>
             <div [style.background-image]="'url(' + mangaStore.fileUrl() + ')'"
                 class="size-full absolute top-0 right-0 blur-xs bg-center -z-10">
             </div>
@@ -22,18 +52,18 @@
             }
         </div>
         <!-- details -->
-        <div class="lg:w-[calc(100%-320px)] h-full p-5 flex flex-col gap-4 mb-5">
+        <div class="lg:w-[calc(100%-320px)] h-full p-5 flex flex-col gap-3 mb-5">
             <!-- title -->
-            <h1 class="text-2xl lg:text-3xl font-bold line-clamp-1">{{ mangaTitle }}</h1>
+            <h1 class="text-lg lg:text-3xl font-bold line-clamp-1">{{ mangaTitle }}</h1>
             <!-- author -->
-            <h2 class=" flex items-center gap-2 font-bold">
+            <h2 class="text-xs lg:text-sm flex items-center gap-2 font-bold">
                 Author :
                 <a target="_blank" [href]="`https://mangadex.org/author/${mangaStore.authorID()}`"
                     class="line-clamp-1 font-normal text-(--text-alt-color)">{{ mangaStore.author() }}</a>
             </h2>
             <!-- year & rating & status -->
             <div
-                class="text-[12px] flex flex-col gap-1 border-2 border-[#ffffff22] bg-[#0000003a] w-fit p-3 rounded-2xl">
+                class="text-[10px] hidden lg:flex flex-col gap-1 border-2 border-[#ffffff22] bg-[#0000003a] w-fit px-3 py-2 rounded-2xl">
                 <div class=" flex items-center gap-2 font-bold">Year :
                     <span class="font-semibold text-cyan-400">
                         {{mangaStore.manga()?.attributes?.year ?? 'Unknown'}}
@@ -52,10 +82,10 @@
             </div>
             <!-- desc -->
             <div class="text-sm font-bold">Description :</div>
-            <div (click)="toggleDesc()"
-                class="descBox p-3 cursor-pointer border-2 border-[#ffffff22] bg-[#0000003a] h-26.75 sm:h-37 rounded-2xl overflow-y-auto">
+            <div (click)="toggleDesc()" [class]="`${isDescExtend() ? 'overflow-y-auto' : 'overflow-hidden'}`"
+                class="descBox p-3 cursor-pointer border-2 border-[#ffffff22] bg-[#0000003a] h-26.75 sm:h-37 rounded-2xl ">
                 <p [class]="`${isDescExtend() ? '' : 'line-clamp-4 sm:line-clamp-6'}`"
-                    class="text-sm text-(--text-alt-color)">{{
+                    class="text-xs lg:text-sm text-(--text-alt-color)">{{
                     mangaStore.manga()?.attributes?.description?.['en'] }}</p>
             </div>
             <!-- genre -->
@@ -69,7 +99,8 @@
                 }
             </div>
             <!-- actions -->
-            <div class="w-full flex font-semibold gap-5 mt-3">
+            <div
+                class="w-full flex justify-center lg:justify-start items-center font-semibold gap-2 lg:gap-5 mt-3 lg:ms-5">
                 <button (click)="openChapters()"
                     class="w-37 flex justify-center items-center gap-1 bg-zinc-900 text-(--text-alt-color) py-2  rounded-xl border-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -80,7 +111,7 @@
                     Read
                 </button>
                 <button (click)="myMessage()"
-                    class="w-37 flex justify-center items-center text-zinc-900 py-2 gap-1 bg-(--text-alt-color) rounded-xl border-2 border-zinc-900">
+                    class="w-37 flex justify-center items-center gap-1 bg-zinc-900 text-(--text-alt-color) py-2  rounded-xl border-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                         class="size-5 mt-px">
                         <path fill-rule="evenodd"
@@ -92,16 +123,17 @@
             </div>
         </div>
     </div>
+    }
     <!-- chapter selector -->
     <div [class]="`${isChaptersOpen() ? 'translate-y-0' : '-translate-y-full'}`"
-        class="bg-zinc-900 w-dvw h-dvh fixed top-0 left-0 z-55 text-(--text-alt-color) overflow-y-auto transition-[translate] duration-300 descBox">
+        class="bg-zinc-900 w-dvw h-dvh fixed top-0 left-0 z-999 text-(--text-alt-color) overflow-y-auto transition-[translate] duration-300 descBox">
         <div class="container mx-auto">
             <div class="py-5 px-10 border-b-2 border-[#ffffff42] flex items-center justify-between">
                 <h2 class="font-bold text-2xl">Select Chapter </h2>
                 <div class="flex items-center gap-5">
                     <select class="w-20" (change)="changeLang($event)" name="choose lang" id="lang">
                         @for (lang of languages(); track lang.value) {
-                            <option class="bg-zinc-800" [value]="lang.value">{{lang.label}}</option>
+                        <option class="bg-zinc-800" [value]="lang.value">{{lang.label}}</option>
                         }
                     </select>
                     <button (click)="closeChapters()" class="text-3xl hover:text-(--hover-color)">
@@ -116,14 +148,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5 ">
                 @for (chapter of mangaStore.chapters(); track chapter.id) {
                 <div class="border-2 p-3 rounded-xl">
-                    <a href="#" class="size-full flex gap-2">
+                    <a [routerLink]="`/chapter/${mangaStore.manga()?.id}/${chapter.id}`" class="size-full flex gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path
                                 d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
                         </svg>
-                        Chapter {{chapter.attributes.chapter}} | {{`${chapter.attributes.title ?
+                        <!-- Chapter {{chapter.attributes.chapter}} | {{`${chapter.attributes.title ?
                         chapter.attributes.title :
-                        '---'}`}}
+                        '---'}`}} -->
+                        Chapter {{chapter.attributes.chapter}}
                     </a>
                 </div>
                 }

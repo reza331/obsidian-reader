@@ -1,12 +1,13 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MangaStore } from '../../core/manga-page-service/manga-store';
 import { RatingColor } from '../../directives/rating-color';
 import { languages } from '../../content/language-options';
+import { LoadingBox } from "../../shared/components/loading-box/loading-box";
 
 @Component({
   selector: 'app-manga',
-  imports: [RatingColor],
+  imports: [RatingColor, LoadingBox, RouterLink],
   templateUrl: './manga.html',
   styleUrl: './manga.css',
   standalone: true

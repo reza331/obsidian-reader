@@ -4,10 +4,11 @@ import { MangaServices } from '../../../core/api/manga-services';
 import { catchError } from 'rxjs';
 import { SlideSectionsConfig } from '../../../pages/home/home';
 import { MangaSlideCard } from '../manga-slide-card/manga-slide-card';
+import { LoadingBox } from "../loading-box/loading-box";
 
 @Component({
   selector: 'app-manga-slide',
-  imports: [MangaSlideCard],
+  imports: [MangaSlideCard, LoadingBox],
   templateUrl: './manga-slide.html',
   styleUrl: './manga-slide.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

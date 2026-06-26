@@ -9,7 +9,7 @@
         </div>
         }
         <div class="absolute w-full bottom-0 left-0 bg-[#000000d2]  pb-4 pt-2 ps-2 lg:hidden">
-            <h2 class="line-clamp-1 text-[11px]">{{mangaTitle}}</h2>
+            <h2 [routerLink]="`/manga/${manga()?.id}`" class="line-clamp-1 text-[11px]">{{mangaTitle}}</h2>
         </div>
     </div>
     <!-- desktop detail -->

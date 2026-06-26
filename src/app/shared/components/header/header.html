@@ -1,4 +1,4 @@
-<header class="border-b-2 glass backdrop-blur-xs">
+<header [class]="isChapter() ? 'blackGlass' : 'glass' " class="border-b-2 backdrop-blur-xs fixed top-0 start-0 w-dvw z-99">
     <nav class="container flex items-center justify-between px-11 py-5">
         <!-- logo temp placeholder -->
         <h2 class="lg:w-full text-2xl font-bold">Obsidian Reader</h2>
@@ -22,10 +22,9 @@
     </nav>
 </header>
 
-
 <!-- nav links mobile -->
 <div [class]="`${isOpen() ? 'translate-x-0' : '-translate-x-full'}`"
-    class="lg:hidden w-70 bg-zinc-900 h-dvh fixed top-0 left-0 z-20 duration-300 transition-[translate] p-5">
+    class="lg:hidden w-70 bg-zinc-900 h-dvh fixed top-0 left-0 z-9999 duration-300 transition-[translate] p-5">
     <!-- logo -->
     <h2 class="w-full text-2xl font-bold border-b-2 pb-5 mb-5 border-gray-500">Obsidian Reader</h2>
     <!-- links -->

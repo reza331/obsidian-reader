@@ -1,0 +1,13 @@
+<div class="bg-zinc-900 w-dvw px-10 top-17 fixed py-5 text-xs font-semibold">
+    <div>
+        <span class="text-teal-500">Scanlation group</span> : {{chapterStore.scangroup() || 'N/A'}}
+    </div>
+</div>
+<main class="container mt-33">
+    <!-- images -->
+    <div class="flex flex-col items-center">
+        @for (image of chapterStore.images(); track $index) {
+        <img class="w-[700px]" [src]="`${chapterStore.proxyAddress()}${chapterStore.baseUrl()}/data-saver/${chapterStore.hash()}/${image}`" alt="">
+        }
+    </div>
+</main>

@@ -30,6 +30,11 @@ button {
     background-color: #ffffff0e;
 }
 
+.blackGlass {
+    border-color: #ffffff22;
+    background-color: #000000dd;
+}
+
 swiper-container::part(button-next),
 swiper-container::part(button-prev) {
     color: whitesmoke;
@@ -43,7 +48,7 @@ swiper-container::part(button-prev) {
 }
 
 swiper-container {
-  --swiper-preloader-color: rgba(0, 0, 0, 0);
+    --swiper-preloader-color: rgba(0, 0, 0, 0);
 }
 
 
@@ -82,4 +87,5 @@ swiper-container {
         transform: rotate(1turn)
     }
 }
+
 /* ________________________________ */
