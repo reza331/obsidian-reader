@@ -147,19 +147,23 @@
         </div>
         <div [class]="`${isChaptersOpen() ? 'translate-y-0' : '-translate-y-full'}`"
             class="bg-zinc-900 w-dvw h-dvh fixed top-0 left-0 z-998 text-(--text-alt-color) transition-[translate] duration-300 descBox">
-            <div
-                class="chapbox h-[calc(100%-90px)] overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5 mt-20">
-                @for (chapter of mangaStore.chapters(); track chapter.id) {
-                <div class="border-2 p-3 rounded-xl cursor-pointer">
-                    <a [routerLink]="`/chapter/${mangaStore.manga()?.id}/${chapter.id}`" class="size-full flex gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                            <path
-                                d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
-                        </svg>
-                        Chapter {{chapter.attributes.chapter}}
-                    </a>
+            <div class="chapbox h-[calc(100%-90px)] overflow-y-auto mt-20">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5">
+                    @for (chapter of mangaStore.chapters(); track chapter.id) {
+                    <div class="border-2 p-3 rounded-xl cursor-pointer">
+                        <a [routerLink]="`/chapter/${mangaStore.manga()?.id}/${chapter.id}`"
+                            class="size-full flex gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-6">
+                                <path
+                                    d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+                            </svg>
+                            Chapter {{chapter.attributes.chapter}}
+                        </a>
+                    </div>
+                    }
                 </div>
-                }
             </div>
         </div>
     </div>

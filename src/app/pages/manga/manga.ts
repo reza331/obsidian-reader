@@ -47,10 +47,12 @@ export class Manga implements OnInit {
   }
 
   openChapters() {
+    document.body.style.overflow = 'hidden'
     this.isChaptersOpen.set(true)
   }
 
   closeChapters() {
+    document.body.style.overflow = ''
     this.isChaptersOpen.set(false)
   }
 
