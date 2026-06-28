@@ -56,7 +56,7 @@ export class MangaStore {
     if (coverID) {
       this.mangaServices.getCover(coverID).subscribe({
         next: (data) => {
-          this.fileUrl.set(`${proxyAddress}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}` || '')
+          this.fileUrl.set(`${proxyAddress}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}.512.jpg` || '')
         }
       })
     }

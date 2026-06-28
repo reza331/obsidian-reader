@@ -31,7 +31,7 @@ button {
 }
 
 .blackGlass {
-    border-color: #ffffff22;
+    border-color: #ffffff3a;
     background-color: #000000dd;
 }
 
@@ -89,3 +89,15 @@ swiper-container {
 }
 
 /* ________________________________ */
+
+.chapbox::-webkit-scrollbar {
+  background: #3a3a3a;
+  border-radius: 9999px;
+  width: 7px;
+}
+
+.chapbox::-webkit-scrollbar-thumb {
+  background: #ffffff42;
+  border-radius: 9999px;
+  width: 7px;
+}

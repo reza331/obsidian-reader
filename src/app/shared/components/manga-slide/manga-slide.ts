@@ -28,7 +28,7 @@ export class MangaSlide implements OnInit {
 
     this.isLoading.set(true)
 
-    this.mangaservices.getMangas(0, 10, this.options()?.queryOption)
+    this.mangaservices.getMangas(0, 20, this.options()?.queryOption)
       .pipe(
         catchError((err) => {
           console.log(err)

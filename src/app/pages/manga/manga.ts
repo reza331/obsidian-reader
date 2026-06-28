@@ -22,15 +22,18 @@ export class Manga implements OnInit {
 
   get mangaTitle() {
 
+    const altTitles = this.mangaStore.manga()?.attributes.altTitles
     const titles = this.mangaStore.manga()?.attributes.title
 
-    if (!titles) return 'No title'
+    if (!altTitles || !titles) return 'No Title'
+
+    const engTitle = altTitles.find(t => t['en'])
+
+    if (engTitle) return engTitle['en']
 
     if (titles['en']) return titles['en']
-
     const firstKey = Object.keys(titles)[0]
-
-    return titles[firstKey]
+    return firstKey
 
   }
 
@@ -42,7 +45,7 @@ export class Manga implements OnInit {
   toggleDesc() {
     this.isDescExtend.update(value => !value)
   }
-  
+
   openChapters() {
     this.isChaptersOpen.set(true)
   }
@@ -56,7 +59,7 @@ export class Manga implements OnInit {
   }
 
   changeLang(event: any) {
-    this.mangaStore.getChapters(this.mangaStore.manga()?.id as string  , event.target.value )
+    this.mangaStore.getChapters(this.mangaStore.manga()?.id as string, event.target.value)
   }
 
   runService() {

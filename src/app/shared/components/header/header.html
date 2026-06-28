@@ -1,7 +1,7 @@
-<header [class]="isChapter() ? 'blackGlass' : 'glass' " class="border-b-2 backdrop-blur-xs fixed top-0 start-0 w-dvw z-99">
-    <nav class="container flex items-center justify-between px-11 py-5">
+<header [class]="isScrolled() ? 'blackGlass' : 'glass' " class="border-b-2 backdrop-blur-xs fixed top-0 start-0 w-dvw z-99">
+    <nav class="container flex items-center justify-between px-7 lg:px-11 py-5">
         <!-- logo temp placeholder -->
-        <h2 class="lg:w-full text-2xl font-bold">Obsidian Reader</h2>
+        <h2 class="lg:w-full text-xl lg:text-2xl font-bold whitespace-nowrap">Obsidian Reader</h2>
         <!-- nav links desktop -->
         <ul class="hidden w-full lg:flex items-center justify-center gap-5">
             @for (item of navLinks(); track $index) {
@@ -17,16 +17,15 @@
         </button>
         <!-- searchBar -->
         <div class="hidden lg:block w-full">
-
         </div>
     </nav>
 </header>
 
 <!-- nav links mobile -->
 <div [class]="`${isOpen() ? 'translate-x-0' : '-translate-x-full'}`"
-    class="lg:hidden w-70 bg-zinc-900 h-dvh fixed top-0 left-0 z-9999 duration-300 transition-[translate] p-5">
+    class="lg:hidden w-60 bg-zinc-900 h-dvh fixed top-0 left-0 z-9999 duration-300 transition-[translate] p-5">
     <!-- logo -->
-    <h2 class="w-full text-2xl font-bold border-b-2 pb-5 mb-5 border-gray-500">Obsidian Reader</h2>
+    <h2 class="w-full text-xl font-bold border-b-2 pb-5 mb-5 border-gray-500">Obsidian Reader</h2>
     <!-- links -->
     <ul class="w-full flex flex-col justify-center gap-5 ps-3">
         @for (item of navLinks(); track $index) {

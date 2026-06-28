@@ -19,15 +19,28 @@ export class MangaSlideCard implements OnInit {
 
   get mangaTitle() {
 
+   const altTitles = this.manga()?.attributes.altTitles
     const titles = this.manga()?.attributes.title
 
-    if (!titles) return 'No title'
+    if (!altTitles || !titles) return 'No Title'
+
+    const engTitle = altTitles.find(t => t['en'])
+
+    if (engTitle) return engTitle['en']
 
     if (titles['en']) return titles['en']
+    const firstKey = Object.values(titles)[0]
+    return firstKey
 
-    const firstKey = Object.keys(titles)[0]
+    // const titles = this.manga()?.attributes.title
 
-    return titles[firstKey]
+    // if (!titles) return 'No title'
+
+    // if (titles['en']) return titles['en']
+
+    // const firstKey = Object.keys(titles)[0]
+
+    // return titles[firstKey]
 
   }
 
@@ -41,7 +54,7 @@ export class MangaSlideCard implements OnInit {
     const proxyAddres = `https://proxy331.netlify.app/image-proxy?&url=`
     this.mangaServices.getCover(coverID).subscribe({
       next: (data) => {
-        const imgUrl = `https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}`
+        const imgUrl = `https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}.256.jpg`
         this.fileUrl.set(`${proxyAddres}${encodeURIComponent(imgUrl)}` || '')
       }
     })

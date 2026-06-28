@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { HamburgerButton } from '../hamburger-button/hamburger-button';
 import { filter } from 'rxjs';
@@ -17,18 +17,18 @@ interface NavLinks {
 export class Header implements OnInit {
 
   isOpen = signal(false)
-  isChapter = signal(false)
+  isScrolled = signal(false)
   router = inject(Router)
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled.set(window.scrollY > 20);
+  }
 
   ngOnInit() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
-        if (this.router.url.startsWith('/chapter')) {
-          this.isChapter.set(true)
-        } else {
-          this.isChapter.set(false)
-        }
         this.isOpen.set(false)
       })
   }
