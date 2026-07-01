@@ -1,7 +1,7 @@
 <div [class]="`${searchMobileUi.isSearchOpen() ? 'translate-y-0' : '-translate-y-full'}`"
     class="duration-300 transition-[translate] p-5 fixed w-dvw h-dvh bg-zinc-900 z-99999 top-0 right-0">
     <!-- controls -->
-    <div class="flex items-center justify-between border-b-2 pb-5 border-gray-500">
+    <div class="flex items-center justify-between border-b-2 pb-5 px-2 border-gray-500">
         <!-- input -->
         <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -20,7 +20,7 @@
         </button>
     </div>
     <!-- results -->
-    <div class="flex flex-col gap-3 mt-5">
+    <div class="flex flex-col gap-3 mt-5 px-3">
         @for (manga of searchResult(); track $index) {
         <div (click)="clickItem(manga.id)"
             class="flex items-center gap-2 cursor-pointer duration-500 transition-[color] hover:text-teal-600">
@@ -29,10 +29,10 @@
         </div>
         }
         @if (searchResult().length !== 0 && totalResult() > 5) {
-        <div class="w-full flex justify-center my-3">
+        <div class="w-full flex justify-center mb-1 mt-3">
             <div class="w-[95%] h-0.5 bg-[#ffffff1a]"></div>
         </div>
-        <button class="font-semibold text-xs duration-500 transition-[color] hover:text-teal-600">View all</button>
+        <button class="font-semibold text-xs duration-500 transition-[color] border-2 rounded-2xl py-2 hover:text-teal-600">View all</button>
         }
         @if (searchResult().length === 0) {
         <div class="text-xs">No result</div>
