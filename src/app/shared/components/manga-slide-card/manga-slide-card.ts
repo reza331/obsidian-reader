@@ -2,6 +2,7 @@ import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { MangaItem } from '../../../models/magna';
 import { MangaServices } from '../../../core/api/manga-services';
 import { RouterLink } from "@angular/router";
+import { imgProxyAddress } from '../../../content/image-proxy';
 
 @Component({
   selector: 'app-manga-slide-card',
@@ -15,11 +16,11 @@ export class MangaSlideCard implements OnInit {
   manga = input<MangaItem>()
   mangaServices = inject(MangaServices)
 
-  fileUrl = signal<string>('')
+  imgUrl = signal<string>('')
 
   get mangaTitle() {
 
-   const altTitles = this.manga()?.attributes.altTitles
+    const altTitles = this.manga()?.attributes.altTitles
     const titles = this.manga()?.attributes.title
 
     if (!altTitles || !titles) return 'No Title'
@@ -32,16 +33,6 @@ export class MangaSlideCard implements OnInit {
     const firstKey = Object.values(titles)[0]
     return firstKey
 
-    // const titles = this.manga()?.attributes.title
-
-    // if (!titles) return 'No title'
-
-    // if (titles['en']) return titles['en']
-
-    // const firstKey = Object.keys(titles)[0]
-
-    // return titles[firstKey]
-
   }
 
   get tags() {
@@ -50,14 +41,9 @@ export class MangaSlideCard implements OnInit {
   }
 
   ngOnInit() {
-    const coverID = this.manga()?.relationships.find((rel) => rel.type === 'cover_art')?.id || ''
-    const proxyAddres = `https://proxy331.netlify.app/image-proxy?&url=`
-    this.mangaServices.getCover(coverID).subscribe({
-      next: (data) => {
-        const imgUrl = `https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}.256.jpg`
-        this.fileUrl.set(`${proxyAddres}${encodeURIComponent(imgUrl)}` || '')
-      }
-    })
+    const fileName = this.manga()?.relationships.find((rel) => rel.type === 'cover_art')?.attributes.fileName 
+    const img = `https://uploads.mangadex.org/covers/${this.manga()?.id}/${fileName}.256.jpg`
+    this.imgUrl.set(`${imgProxyAddress}${img}`)
   }
 
 

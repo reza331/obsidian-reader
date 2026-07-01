@@ -34,6 +34,13 @@ export class Chapter implements OnInit {
     this.mangaStore.getChapters(this.mangaStore.manga()?.id as string, event.target.value)
   }
 
+  goMangaPage() {
+    this.router.navigate([
+      '/manga',
+      this.mangaStore.manga()?.id
+    ]);
+  }
+
   chapterSelect(chapterID: string) {
 
     this.closeChapters();
@@ -42,7 +49,7 @@ export class Chapter implements OnInit {
       this.mangaStore.manga()?.id,
       chapterID
     ]);
-    
+
   }
 
   ngOnInit(): void {

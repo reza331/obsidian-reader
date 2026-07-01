@@ -1,25 +1,28 @@
-<main class="mt-37">
+<main class="mt-46 lg:mt-37">
     <div
-        class="bg-zinc-900 border-b-2 border-[#ffffff30] w-dvw px-7 pt-5 pb-4 lg:px-10 top-[73px] fixed text-xs font-semibold gap-5 flex items-center justify-between">
+        class="bg-zinc-900 border-b-2 border-[#ffffff30] w-dvw px-7 pt-5 pb-4 lg:px-10 top-[70px] fixed text-xs font-semibold gap-5 flex flex-col lg:flex-row lg:items-center justify-between">
         <div class="flex items-center gap-1">
             <span class="text-teal-500 whitespace-nowrap">Scanlation group</span> : <span
                 class="line-clamp-1">{{chapterStore.scangroup()
                 ||
                 'N/A'}}</span>
         </div>
-        <button (click)="openChapters()" class="border-2 rounded-2xl py-2 px-5">Chapters</button>
+        <div class="flex gap-2">
+            <button (click)="openChapters()" class="border-2 rounded-2xl py-2 px-5">Chapters</button>
+            <button (click)="goMangaPage()" class="border-2 rounded-2xl py-2 px-5">Manga Page</button>
+        </div>
     </div>
     <!-- images -->
     <div class="flex flex-col items-center">
         @for (image of chapterStore.images(); track $index) {
-        <div class="w-full flex justify-start text-[7px]">{{$index + 1}}</div>
+        <div class="w-[95%] lg:w-[700px] flex justify-start text-[7px]">{{$index + 1}}</div>
         <img loading="lazy" class="w-[95%] lg:w-[700px]"
             [src]="`${chapterStore.proxyAddress()}${chapterStore.baseUrl()}/data-saver/${chapterStore.hash()}/${image}`"
             alt="">
         }
     </div>
     <!-- chapters box -->
-    <div>
+    <div class="mb-5">
         <div [class]="`${isChaptersOpen() ? 'translate-y-0' : '-translate-y-full'}`"
             class="fixed top-0 start-0 w-dvw py-5 px-10 border-b-2 z-999 bg-zinc-900 transition-[translate] border-[#ffffff42] flex items-center justify-between">
             <h2 class="font-bold text-2xl">Select Chapter </h2>
@@ -41,8 +44,7 @@
         <div [class]="`${isChaptersOpen() ? 'translate-y-0' : '-translate-y-full'}`"
             class="bg-zinc-900 w-dvw h-dvh fixed top-0 left-0 z-998 text-(--text-alt-color) transition-[translate] duration-300 descBox">
             <div class="chapbox h-[calc(100%-90px)] overflow-y-auto mt-20">
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5">
                     @for (chapter of mangaStore.chapters(); track chapter.id) {
                     <div [class]="chapter.id === chapterID() ? 'text-teal-600 border-teal-600' : ''"
                         class="border-2 p-3 rounded-xl cursor-pointer">

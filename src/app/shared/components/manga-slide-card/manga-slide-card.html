@@ -1,10 +1,10 @@
 <div [class]="sizeClass()" class="glass lg:backdrop-blur-xs border-2 rounded-3xl flex overflow-hidden">
     <div class="h-full w-full lg:w-25 cursor-pointer relative">
-        @if (fileUrl()) {
-        <img [routerLink]="`/manga/${manga()?.id}`" loading="lazy" class="size-full object-cover" [src]="fileUrl()"
+        @if (imgUrl()) {
+        <img [routerLink]="`/manga/${manga()?.id}`" loading="lazy" class="size-full object-cover" [src]="imgUrl()"
             alt="cover">
         }
-        @if (!fileUrl()) {
+        @if (!imgUrl()) {
         <div class="size-full flex items-center justify-center bg-[#d8d8d8d2]">
         </div>
         }

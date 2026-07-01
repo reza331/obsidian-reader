@@ -1,0 +1,1 @@
+export const imgProxyAddress = 'https://proxy331.netlify.app/image-proxy?url='

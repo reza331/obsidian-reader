@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MangaStore } from '../../core/manga-page-service/manga-store';
-import { RatingColor } from '../../directives/rating-color';
+import { RatingColor } from '../../shared/directives/rating-color';
 import { languages } from '../../content/language-options';
 import { LoadingBox } from "../../shared/components/loading-box/loading-box";
 
@@ -47,12 +47,10 @@ export class Manga implements OnInit {
   }
 
   openChapters() {
-    document.body.style.overflow = 'hidden'
     this.isChaptersOpen.set(true)
   }
 
   closeChapters() {
-    document.body.style.overflow = ''
     this.isChaptersOpen.set(false)
   }
 

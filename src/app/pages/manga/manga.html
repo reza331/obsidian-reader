@@ -14,9 +14,10 @@
     <div
         class="lg:w-[85%] mx-auto glass backdrop-blur-xs border-2 rounded-3xl flex flex-col lg:flex-row overflow-y-auto">
         <!-- cover desktop  -->
-        <div class="hidden lg:block min-h-[calc(100dvh-80px) w-75 overflow-hidden">
+        <div class="hidden lg:block max-h-137 w-75 overflow-hidden">
             @if (mangaStore.fileUrl()) {
-            <img fetchpriority="high" [src]="mangaStore.fileUrl()" alt="cover" class="size-full object-cover">
+            <img fetchpriority="high" [src]="`${mangaStore.fileUrl()}.512.jpg`" alt="cover"
+                class="size-full object-cover">
             }@else {
             <div class="size-full bg-[#ffffff44]"></div>
             }
@@ -42,11 +43,11 @@
                     </span>
                 </div>
             </div>
-            <div [style.background-image]="'url(' + mangaStore.fileUrl() + ')'"
+            <div [style.background-image]="'url(' + `${mangaStore.fileUrl()}.256.jpg` + ')'"
                 class="size-full absolute top-0 right-0 blur-xs bg-center -z-10">
             </div>
             @if(mangaStore.fileUrl()) {
-            <img fetchpriority="high" [src]="mangaStore.fileUrl()" alt="cover"
+            <img fetchpriority="high" [src]="`${mangaStore.fileUrl()}.256.jpg`" alt="cover"
                 class="block ms-10 h-full w-auto object-contain">
             }@else {
             <div class="size-full bg-[#ffffff44]"></div>
@@ -148,8 +149,7 @@
         <div [class]="`${isChaptersOpen() ? 'translate-y-0' : '-translate-y-full'}`"
             class="bg-zinc-900 w-dvw h-dvh fixed top-0 left-0 z-998 text-(--text-alt-color) transition-[translate] duration-300 descBox">
             <div class="chapbox h-[calc(100%-90px)] overflow-y-auto mt-20">
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-10 py-5 gap-5">
                     @for (chapter of mangaStore.chapters(); track chapter.id) {
                     <div class="border-2 p-3 rounded-xl cursor-pointer">
                         <a [routerLink]="`/chapter/${mangaStore.manga()?.id}/${chapter.id}`"

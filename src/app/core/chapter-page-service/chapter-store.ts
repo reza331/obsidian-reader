@@ -1,5 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { MangaServices } from '../api/manga-services';
+import { imgProxyAddress } from '../../content/image-proxy';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ export class ChapterStore {
 
   apiService = inject(MangaServices)
 
-  proxyAddress = signal('https://proxy331.netlify.app/image-proxy?url=')
+  proxyAddress = signal(imgProxyAddress)
   hash = signal('')
   images = signal<string[]>([])
   baseUrl = signal('')

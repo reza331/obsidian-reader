@@ -3,6 +3,7 @@ import { MangaItem } from '../../models/magna';
 import { MangaServices } from '../api/manga-services';
 import { catchError } from 'rxjs';
 import { ChapterItem } from '../../models/chapter';
+import { imgProxyAddress } from '../../content/image-proxy';
 
 @Injectable({
   providedIn: 'root',
@@ -25,10 +26,10 @@ export class MangaStore {
 
     this.error.set(false)
     this.loading.set(true)
-    
+
     this.reset()
 
-    this.mangaServices.getManga(id)
+    this.mangaServices.getManga(id , 'includes[]=cover_art')
       .pipe(catchError((err) => {
         this.loading.set(false)
         this.error.set(true)
@@ -47,19 +48,11 @@ export class MangaStore {
             this.loading.set(false)
           }
         })
-
   }
 
   getCoverUrl() {
-    const coverID = this.manga()?.relationships.find(rel => rel.type === 'cover_art')?.id;
-    const proxyAddress = `https://proxy331.netlify.app/image-proxy?url=`
-    if (coverID) {
-      this.mangaServices.getCover(coverID).subscribe({
-        next: (data) => {
-          this.fileUrl.set(`${proxyAddress}https://uploads.mangadex.org/covers/${this.manga()?.id}/${data.data.attributes.fileName}.512.jpg` || '')
-        }
-      })
-    }
+    const fileName = this.manga()?.relationships.find(rel => rel.type === 'cover_art')?.attributes.fileName;
+    this.fileUrl.set(`${imgProxyAddress}https://uploads.mangadex.org/covers/${this.manga()?.id}/${fileName}`)
   }
 
   getAuthor() {

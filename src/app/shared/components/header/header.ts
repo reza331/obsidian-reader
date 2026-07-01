@@ -2,6 +2,10 @@ import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { HamburgerButton } from '../hamburger-button/hamburger-button';
 import { filter } from 'rxjs';
+import { Search } from '../search/search';
+import { SearchButton } from "../search-button/search-button";
+import { SearchMobile } from "../search-mobile/search-mobile";
+import { SearchMobileUi } from '../../services/search-mobile-ui';
 
 interface NavLinks {
   label: string
@@ -10,15 +14,18 @@ interface NavLinks {
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, HamburgerButton],
+  imports: [RouterLink, RouterLinkActive, HamburgerButton, Search, SearchButton, SearchMobile],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header implements OnInit {
 
   isOpen = signal(false)
+  isSearchOpen = signal(false)
   isScrolled = signal(false)
   router = inject(Router)
+  searchMobileUi = inject(SearchMobileUi)
+
 
   @HostListener('window:scroll')
   onScroll() {
@@ -40,6 +47,7 @@ export class Header implements OnInit {
   closeMenu() {
     this.isOpen.set(false)
   }
+
 
   navLinks = signal<NavLinks[]>([
     { label: 'Home', url: '/' },

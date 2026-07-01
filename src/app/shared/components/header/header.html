@@ -1,9 +1,15 @@
-<header [class]="isScrolled() ? 'blackGlass' : 'glass' " class="border-b-2 backdrop-blur-xs fixed top-0 start-0 w-dvw z-99">
-    <nav class="container flex items-center justify-between px-7 lg:px-11 py-5">
+<header [class]="isScrolled() ? 'blackGlass' : 'glass' "
+    class="border-b-2 backdrop-blur-xs fixed top-0 start-0 w-dvw z-99">
+    <nav class="container flex items-center justify-between px-7 lg:px-11 py-3">
         <!-- logo temp placeholder -->
-        <h2 class="lg:w-full text-xl lg:text-2xl font-bold whitespace-nowrap">Obsidian Reader</h2>
+        <div class="w-full">
+            <div class="w-fit flex flex-col items-center">
+                <h2 class="text-xl font-bold whitespace-nowrap">Obsidian Reader</h2>
+                <a target="_blank" href="https://api.mangadex.org/docs/" class="text-xs whitespace-nowrap mt-0.5 text-gray-400">Powered by <span class="text-orange-500 font-semibold">Mangadex</span> api</a>
+            </div>
+        </div>
         <!-- nav links desktop -->
-        <ul class="hidden w-full lg:flex items-center justify-center gap-5">
+        <ul class="hidden  w-full lg:flex items-center justify-center gap-5">
             @for (item of navLinks(); track $index) {
             <li class="desktopLi">
                 <a routerLinkActive="text-teal-500 font-bold" [routerLinkActiveOptions]="{exact: item.url === '/'}"
@@ -11,12 +17,20 @@
             </li>
             }
         </ul>
-        <!-- hamburger button -->
-        <button (click)="openMenu()" class="lg:hidden mt-1">
-            <hamburger-button />
-        </button>
+        <!-- mobile -->
+        <div class="flex items-center gap-5 lg:hidden mt-1">
+            <!-- search icon -->
+            <button (click)="searchMobileUi.openMobileSearch()">
+                <search-button/>
+            </button>
+            <!-- hamburger button -->
+            <button (click)="openMenu()">
+                <hamburger-button />
+            </button>       
+        </div>
         <!-- searchBar -->
-        <div class="hidden lg:block w-full">
+        <div class="hidden lg:flex w-full justify-end">
+            <app-search />
         </div>
     </nav>
 </header>
@@ -36,7 +50,9 @@
         }
     </ul>
 </div>
+<!-- search resultbox mobile -->
+ <app-search-mobile />
 <!-- close overlay -->
 @if (isOpen()) {
-<div (click)="closeMenu()" class="lg:hidden fixed w-dvw h-dvh top-0 left-0 bg-black/60 z-10"></div>
+<div (click)="closeMenu()" class="lg:hidden fixed w-dvw h-dvh top-0 left-0 bg-black/60 z-100"></div>
 }

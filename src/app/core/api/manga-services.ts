@@ -25,8 +25,8 @@ export class MangaServices {
     return this.http.get<CoverArtResponse>(`${this.url}/cover/${id}`)
   }
 
-  getManga(id: string) {
-    return this.http.get<MangaResponse>(`${this.url}/manga/${id}`)
+  getManga(id: string, otherQueries: string = '') {
+    return this.http.get<MangaResponse>(`${this.url}/manga/${id}?${otherQueries}`)
   }
 
   getChapters(mangaID: string, offset: number = 0, limit: number = 500, lang: string = 'en') {

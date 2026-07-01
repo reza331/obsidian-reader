@@ -38,6 +38,7 @@ export interface MangaItem {
     id: string;
     type: string;
     related?: string;
+    attributes: { fileName: string }
   }[];
 }
 
