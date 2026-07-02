@@ -74,6 +74,7 @@ export class Manga implements OnInit {
   }
 
   ngOnInit() {
+    
     this.runService();
   }
 

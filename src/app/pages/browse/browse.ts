@@ -34,7 +34,7 @@ export class Browse implements OnInit {
   getList(offset: number, limit: number) {
     this.isLoading.set(true)
     this.isError.set(false)
-    this.mangaServices.getMangas(offset, limit, `${this.queryOption() === '#' ? '' : this.queryOption + '&'}includes[]=cover_art`)
+    this.mangaServices.getMangas(offset, limit, `${this.queryOption() === '#' ? '' : this.queryOption() + '&'}includes[]=cover_art`)
       .pipe()
       .subscribe({
         next: (data) => {
