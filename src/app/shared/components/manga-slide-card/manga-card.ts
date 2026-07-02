@@ -5,12 +5,12 @@ import { RouterLink } from "@angular/router";
 import { imgProxyAddress } from '../../../content/image-proxy';
 
 @Component({
-  selector: 'app-manga-slide-card',
+  selector: 'app-manga-card',
   imports: [RouterLink],
-  templateUrl: './manga-slide-card.html',
-  styleUrl: './manga-slide-card.css',
+  templateUrl: './manga-card.html',
+  styleUrl: './manga-card.css',
 })
-export class MangaSlideCard implements OnInit {
+export class MangaCard implements OnInit {
 
   sizeClass = input<string>('')
   manga = input<MangaItem>()

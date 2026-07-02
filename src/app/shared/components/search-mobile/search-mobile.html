@@ -32,9 +32,9 @@
         <div class="w-full flex justify-center mb-1 mt-3">
             <div class="w-[95%] h-0.5 bg-[#ffffff1a]"></div>
         </div>
-        <button class="font-semibold text-xs duration-500 transition-[color] border-2 rounded-2xl py-2 hover:text-teal-600">View all</button>
+        <button (click)="viewAll()" class="font-semibold text-xs duration-500 transition-[color] border-2 rounded-2xl py-2 hover:text-teal-600">View all</button>
         }
-        @if (searchResult().length === 0) {
+        @if (searchResult().length === 0 && filterValue()) {
         <div class="text-xs">No result</div>
         }
     </div>

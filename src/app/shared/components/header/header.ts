@@ -2,7 +2,7 @@ import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { HamburgerButton } from '../hamburger-button/hamburger-button';
 import { filter } from 'rxjs';
-import { Search } from '../search/search';
+import { SearchDesk } from '../search-desk/search-desk';
 import { SearchButton } from "../search-button/search-button";
 import { SearchMobile } from "../search-mobile/search-mobile";
 import { SearchMobileUi } from '../../services/search-mobile-ui';
@@ -14,7 +14,7 @@ interface NavLinks {
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, HamburgerButton, Search, SearchButton, SearchMobile],
+  imports: [RouterLink, RouterLinkActive, HamburgerButton, SearchDesk, SearchButton, SearchMobile],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

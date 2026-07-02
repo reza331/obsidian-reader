@@ -1,17 +1,17 @@
 import { Component, inject, signal } from '@angular/core';
 import { MangaServices } from '../../../core/api/manga-services';
 import { MangaItem } from '../../../models/magna';
-import { Router, RouterLink } from "@angular/router";
+import { Router } from "@angular/router";
 import { ClickoutsideDirective } from '../../directives/clickoutside-directive';
 import { imgProxyAddress } from '../../../content/image-proxy';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-desk',
   imports: [ClickoutsideDirective],
-  templateUrl: './search.html',
-  styleUrl: './search.css',
+  templateUrl: './search-desk.html',
+  styleUrl: './search-desk.css',
 })
-export class Search {
+export class SearchDesk {
 
   mangaService = inject(MangaServices)
   router = inject(Router)
@@ -68,6 +68,14 @@ export class Search {
       '/manga',
       mangaID
     ])
+  }
+
+  viewAll() {
+    this.router.navigate([
+      'search',
+      this.filterValue()
+    ])
+    this.closeSearch()
   }
 
   getCoverUrl(manga: MangaItem) {

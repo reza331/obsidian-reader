@@ -4,10 +4,11 @@ import { MangaStore } from '../../core/manga-page-service/manga-store';
 import { RatingColor } from '../../shared/directives/rating-color';
 import { languages } from '../../content/language-options';
 import { LoadingBox } from "../../shared/components/loading-box/loading-box";
+import { FetchErrorBox } from "../../shared/components/fetch-error-box/fetch-error-box";
 
 @Component({
   selector: 'app-manga',
-  imports: [RatingColor, LoadingBox, RouterLink],
+  imports: [RatingColor, LoadingBox, RouterLink, FetchErrorBox],
   templateUrl: './manga.html',
   styleUrl: './manga.css',
   standalone: true
@@ -32,7 +33,7 @@ export class Manga implements OnInit {
     if (engTitle) return engTitle['en']
 
     if (titles['en']) return titles['en']
-    const firstKey = Object.keys(titles)[0]
+    const firstKey = Object.values(titles)[0]
     return firstKey
 
   }
@@ -60,6 +61,10 @@ export class Manga implements OnInit {
 
   changeLang(event: any) {
     this.mangaStore.getChapters(this.mangaStore.manga()?.id as string, event.target.value)
+  }
+
+  refetch = () => {
+    this.runService()
   }
 
   runService() {

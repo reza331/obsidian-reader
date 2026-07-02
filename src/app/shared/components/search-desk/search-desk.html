@@ -7,7 +7,7 @@
             d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
     </svg>
     <!-- input -->
-    <input (focus)="focusHandler($event)" (input)="searchHandler($event)" class="placeholder:text-xs text-xs block py-2"
+    <input id="searchInputDesk" (focus)="focusHandler($event)" (input)="searchHandler($event)" class="placeholder:text-xs text-xs block py-2"
         placeholder="Search manga ..." type="text">
     <!-- result box -->
     @if (filterValue() && filterValue().length > 2) {
@@ -24,9 +24,9 @@
         <div class="w-full flex justify-center">
             <div class="w-[95%] h-0.5 bg-[#ffffff1a]"></div>
         </div>
-        <button class="font-semibold text-xs duration-500 transition-[color] hover:text-teal-600">View all</button>
+        <button (click)="viewAll()" class="font-semibold text-xs duration-500 transition-[color] hover:text-teal-600">View all</button>
         }
-        @if (searchResult().length === 0) {
+        @if (searchResult().length === 0 && filterValue().length > 2 ) {
         <div class="text-xs">No result</div>
         }
     </div>

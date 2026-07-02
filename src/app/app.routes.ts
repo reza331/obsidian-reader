@@ -4,6 +4,8 @@ import { Library } from './pages/library/library';
 import { About } from './pages/about/about';
 import { Manga } from './pages/manga/manga';
 import { Chapter } from './pages/chapter/chapter';
+import { Search } from './pages/search/search';
+import { Browse } from './pages/browse/browse';
 
 export const routes: Routes = [
     {
@@ -13,6 +15,14 @@ export const routes: Routes = [
     {
         path: 'manga/:id',
         component: Manga
+    },
+    {
+        path: 'search/:searched',
+        component: Search
+    },
+    {
+        path: 'browse/:title/:query',
+        component: Browse
     },
     {
         path: 'chapter/:mangaID/:chapterID',

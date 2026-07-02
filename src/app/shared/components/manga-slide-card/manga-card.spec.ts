@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MangaSlideCard } from './manga-slide-card';
+import { MangaCard } from './manga-card';
 
 describe('MangaCard', () => {
-  let component: MangaSlideCard;
-  let fixture: ComponentFixture<MangaSlideCard>;
+  let component: MangaCard;
+  let fixture: ComponentFixture<MangaCard>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MangaSlideCard]
+      imports: [MangaCard]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MangaSlideCard);
+    fixture = TestBed.createComponent(MangaCard);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

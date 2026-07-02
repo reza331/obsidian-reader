@@ -6,7 +6,7 @@ import { languages } from '../../content/language-options';
 
 @Component({
   selector: 'app-chapter',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './chapter.html',
   styleUrl: './chapter.css',
 })

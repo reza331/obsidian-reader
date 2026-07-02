@@ -1,15 +1,21 @@
 <main class="mt-42 lg:mt-37">
     <div
-        class="bg-zinc-900 border-b-2 border-[#ffffff30] w-dvw px-7 pt-5 pb-4 lg:px-10 top-[70px] fixed text-xs font-semibold gap-3 lg:gap-5 flex flex-col lg:flex-row lg:items-center justify-between">
-        <div class="flex items-center gap-1">
-            <span class="text-teal-500 whitespace-nowrap">Scanlation group</span> : <span
-                class="line-clamp-1">{{chapterStore.scangroup()
-                ||
-                'N/A'}}</span>
-        </div>
-        <div class="flex gap-1.5 lg:gap-2">
-            <button (click)="openChapters()" class="text-[10px] lg:text-xs border-2 rounded-2xl py-1.5 px-4 lg:py-2 lg:px-5">Chapters</button>
-            <button (click)="goMangaPage()" class="text-[10px] lg:text-xs border-2 rounded-2xl py-1.5 px-4 lg:py-2 lg:px-5">Manga Page</button>
+        class="bg-zinc-900 z-9 border-b-2 border-[#ffffff30] w-dvw top-[70px] fixed">
+        <div class="container px-7 lg:px-10 pt-5 pb-4 text-xs font-semibold gap-3 lg:gap-5 flex flex-col lg:flex-row lg:items-center justify-between">
+            
+                    <div class="flex items-center gap-1">
+                        <span class="text-teal-500 whitespace-nowrap">Scanlation group</span> : <span
+                            class="line-clamp-1">{{chapterStore.scangroup()
+                            ||
+                            'N/A'}}</span>
+                    </div>
+                    <div class="flex gap-1.5 lg:gap-2">
+                        <button (click)="openChapters()"
+                            class="text-[10px] lg:text-xs border-2 rounded-2xl py-1.5 px-4 lg:py-2 lg:px-5">Chapters</button>
+                        <button (click)="goMangaPage()"
+                            class="text-[10px] lg:text-xs border-2 rounded-2xl py-1.5 px-4 lg:py-2 lg:px-5">Manga Page</button>
+                    </div>
+
         </div>
     </div>
     <!-- images -->

@@ -1,10 +1,6 @@
 <main class="container w-dvw min-h-[calc(100dvh-80px)] p-5 mt-20">
     @if (mangaStore.error()) {
-    <div class="py-10 flex justify-center">
-        <p class="text-center text-rose-400 font-bold glass backdrop-blur-xs rounded-2xl size-fit border-2 p-5">An error
-            occurred while loading the content. <button (click)="runService()"
-                class="text-(--text-color) font-semibold">Click to retry</button></p>
-    </div>
+    <app-fetch-error-box [refetchFunction]="refetch" />
     }
     @if (mangaStore.loading()) {
     <app-loading-box [text]="'Loading manga...'" />

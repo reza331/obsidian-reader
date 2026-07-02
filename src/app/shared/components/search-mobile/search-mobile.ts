@@ -12,9 +12,8 @@ import { imgProxyAddress } from '../../../content/image-proxy';
   styleUrl: './search-mobile.css',
 })
 export class SearchMobile {
+
   searchMobileUi = inject(SearchMobileUi)
-
-
   mangaService = inject(MangaServices)
   router = inject(Router)
   totalResult = signal<number>(0)
@@ -63,6 +62,14 @@ export class SearchMobile {
     this.router.navigate([
       '/manga',
       mangaID
+    ])
+  }
+
+  viewAll() {
+    this.searchMobileUi.closeMobileSearch()
+    this.router.navigate([
+      '/search',
+      this.filterValue()
     ])
   }
 
