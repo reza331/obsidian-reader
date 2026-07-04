@@ -34,7 +34,7 @@ export class SaveService {
 
     if (typeof window === 'undefined') return
 
-    const savedList = JSON.parse(localStorage.getItem('saveList') as string) as string[]
+    const savedList = JSON.parse(localStorage.getItem('saveList') as string) as string[] || []
     const targetID = savedList.find(id => id === mangaID)
 
     if (targetID) {
