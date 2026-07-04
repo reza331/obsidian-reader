@@ -1,0 +1,9 @@
+<a [routerLink]="`/manga/${mangaID()}`"
+    class="glass backdrop-blur-xs border-2 rounded-2xl text-sm flex items-center gap-3 pe-3 overflow-hidden">
+    @if(imageUrl()) {
+    <img class="size-18" [src]="imageUrl()" alt="">
+    }@else{
+    <div class="size-18 bg-gray-500 opacity-70"></div>
+    }
+    <div class="line-clamp-2 w-[calc(100%-72px)]">{{isLoading() ? 'Loading...' : mangaTitle}}</div>
+</a>

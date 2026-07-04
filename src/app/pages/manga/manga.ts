@@ -5,6 +5,7 @@ import { RatingColor } from '../../shared/directives/rating-color';
 import { languages } from '../../content/language-options';
 import { LoadingBox } from "../../shared/components/loading-box/loading-box";
 import { FetchErrorBox } from "../../shared/components/fetch-error-box/fetch-error-box";
+import { SaveService } from '../../shared/services/save-service';
 
 @Component({
   selector: 'app-manga',
@@ -17,9 +18,11 @@ export class Manga implements OnInit {
 
   activatedRoute = inject(ActivatedRoute);
   mangaStore = inject(MangaStore);
+  saveService = inject(SaveService);
   isDescExtend = signal(false)
   isChaptersOpen = signal(false)
   languages = signal(languages)
+  mangaID = signal('')
 
   get mangaTitle() {
 
@@ -55,8 +58,8 @@ export class Manga implements OnInit {
     this.isChaptersOpen.set(false)
   }
 
-  myMessage() {
-    alert('This feature is not implemented yet');
+  saveAction() {
+    this.saveService.saveManga(this.mangaID())
   }
 
   changeLang(event: any) {
@@ -69,12 +72,13 @@ export class Manga implements OnInit {
 
   runService() {
     this.activatedRoute.params.subscribe(params => {
+      this.mangaID.set(params['id'])
+      this.saveService.checkSaved(params['id'])
       this.mangaStore.loadManga(params['id']);
     });
   }
 
-  ngOnInit() {
-    
+  ngOnInit() {    
     this.runService();
   }
 

@@ -6,6 +6,7 @@ import { Manga } from './pages/manga/manga';
 import { Chapter } from './pages/chapter/chapter';
 import { Search } from './pages/search/search';
 import { Browse } from './pages/browse/browse';
+import { Settings } from './pages/settings/settings';
 
 export const routes: Routes = [
     {
@@ -35,5 +36,9 @@ export const routes: Routes = [
     {
         path: 'about',
         component: About
+    },
+    {
+        path: 'settings',
+        component: Settings
     },
 ];
