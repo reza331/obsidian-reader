@@ -1,59 +1,54 @@
-# ObsidianReader
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+# Obsidian Reader
 
-## Development server
+** Obsidian Reader ** is a modern manga reader web application , built with Angular and mangadex api
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Demo
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Live demo: 
+* [ https://obsidian-reader-um46.onrender.com/ ]
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Screenshots
 
-```bash
-ng generate component component-name
-```
+![Screenshot 1](https://ucarecdn.com/f87f9098-f635-4745-9481-7014073ef128/-/preview/1000x464/)
+![Screenshot 2](https://ucarecdn.com/2e8bb75a-3af0-4768-9efb-9612ec794838/-/preview/1000x441/)
+![Screenshot 3](https://ucarecdn.com/29fe0de7-6c77-4e01-95fe-1331cc1daf66/-/preview/1000x464/)
+![Screenshot 4](https://ucarecdn.com/90107917-968f-457e-845d-a6fa8aee371a/-/preview/1000x431/)
+![Screenshot 5](https://ucarecdn.com/daad506c-ddaa-43e9-8091-21edb2bff795/-/preview/1000x431/)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Technologies Used
 
-## Building
+* **Frontend:** Angular , Tailwind CSS 
+* **Backend:** Mangadex api , Express for proxy the images and requests
 
-To build the project run:
+---
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## How to Run Locally
 
 ```bash
-ng test
+# Clone the repository
+git clone <your-repo-link>
+
+# Install dependencies
+npm install
+
+# Run the development server
+npm start
 ```
 
-## Running end-to-end tests
+Open [http://localhost:4200](http://localhost:4200) with your browser to see the result.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Contact
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Created by Reza Reihani
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+* Email: reza331wn@gmail.com
+* Telegram: https://t.me/reza_re_frontDev
