@@ -8,7 +8,7 @@
 ## Demo
 
 Live demo: 
-* [ https://obsidian-reader-um46.onrender.com/ ]
+* [ https://obsidian-reader.netlify.app/]
 
 ---
 
